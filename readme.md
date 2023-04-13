@@ -45,6 +45,7 @@ switchup -ghz
 |Tinfoil|[Website](http://tinfoil.io)|`-n`|`yes`|
 |Lockpick_RCM|[GitHub](https://github.com/shchmue/Lockpick_RCM)|`-l`|`yes`|
 |Blood Falcon Skin (c02 only)|[GameBanana](https://gamebanana.com/mods/308097)|`N/A`|`yes`|
+|RetroArch|[Website](https://www.retroarch.com)|`-r`|`no`|
 
 ## todo
 - add update flag to only generate atmosphere/hekate/training mod/fastCFWswitch/tesla files

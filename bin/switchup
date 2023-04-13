@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# script name: switchup
+# description: a command line tool for downloading and preparing SD cards for modded switches
+# usage: switchup [<options>]
+# dependencies: gh, unzip, p7zip, curl
+
 # download a file from a repo's releases
 ghr() {
 	repo="$1"
@@ -25,12 +30,13 @@ main() {
 	kflag=1
 	lflag=1
 	nflag=1
+	rflag=
 	tflag=1
 	wflag=1
 	zflag=
 
 	# handle getting options from the command line
-	while getopts 'cdefghklnotwz' OPTION; do
+	while getopts 'cdefghklnrtwz' OPTION; do
 		case $OPTION in
 		c)
 			cflag=
@@ -59,6 +65,9 @@ main() {
 		n)
 			nflag=
 			;;
+		r)
+			rflag=1
+			;;
 		t)
 			tflag=
 			;;
@@ -79,6 +88,7 @@ main() {
       -k: keep folder (if zipping)
       -l: omit Lockpick_RCM
       -n: omit Tinfoil
+      -r: include RetroArch
       -t: omit Training Mod
       -w: omit WiFi Latency Mod
       -z: output a zip\n" "$(basename "$0")" >&2
@@ -88,7 +98,7 @@ main() {
 	done
 
 	# decide file names
-	filename="SmashSD_"
+	filename="SwitchUp_"
 
 	if test "$tflag"; then
 		filename="${filename}Training+"
@@ -101,6 +111,9 @@ main() {
 	fi
 	if test "$eflag"; then
 		filename="${filename}emuNAND+"
+	fi
+	if test "$rflag"; then
+		filename="${filename}RetroArch+"
 	fi
 	if test "$dflag"; then
 		filename="${filename}D"
@@ -142,6 +155,7 @@ main() {
 	mods_zip="$HOME/Documents/Switch/resources/mods.zip"
 	hdr="HDR-Development/HDR-Releases"
 	smashline="blu-dev/smashline_hook"
+	retroarch="https://buildbot.libretro.com/stable/1.15.0/nintendo/switch/libnx/RetroArch.7z"
 
 	# folder names
 	tmpdir=".gen_switch"
@@ -290,6 +304,13 @@ main() {
 		cp "$resource_dir/emu/hosts.txt" "$out/atmosphere/hosts/emummc.txt"
 		cp "$resource_dir/emu/exosphere.ini" "$out/exosphere.ini"
 
+	fi
+
+	# then RetroArch
+	if test "$rflag"; then
+		echo "adding RetroArch..."
+		curl -L "$retroarch" -o "$tmpdir/retroarch.7z" 2>/dev/null
+		7za x "$tmpdir/retroarch.7z" -o"$out"
 	fi
 
 	# move out folder
