@@ -47,5 +47,14 @@ switchup -ghz
 |Blood Falcon Skin (c02 only)|[GameBanana](https://gamebanana.com/mods/308097)|`N/A`|`yes`|
 |RetroArch|[Website](https://www.retroarch.com)|`-r`|`no`|
 
+## dependencies
+there aren't too many programs required to run `switchup`.
+
+- `bash` (or any posix compliant shell) - to run the script.
+- `curl` - to download content.
+- `gh` - to download content from github releases.
+- `unzip` - to extract content from github releases
+- `p7zip` - to extract retroarch zip
+
 ## todo
 - add update flag to only generate atmosphere/hekate/training mod/fastCFWswitch/tesla files
