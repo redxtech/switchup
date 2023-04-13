@@ -18,7 +18,7 @@ Usage: switchup -[options]
   -l: omit Lockpick_RCM
   -t: omit Training Mod
   -w: omit WiFi Latency Mod
-  -z: zip output a zip
+  -z: output a zip file
 
 # Example (omit Goldleaf, include HDR, output a zip):
 switchup -ghz

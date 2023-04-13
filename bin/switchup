@@ -76,7 +76,7 @@ main() {
       -l: omit Lockpick_RCM
       -t: omit Training Mod
       -w: omit WiFi Latency Mod
-      -z: zip output a zip\n" "$(basename "$0")" >&2
+      -z: output a zip\n" "$(basename "$0")" >&2
 			exit 2
 			;;
 		esac
