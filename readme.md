@@ -16,6 +16,8 @@ Usage: switchup -[options]
   -h: include HDR
   -k: keep folder (if zipping)
   -l: omit Lockpick_RCM
+  -n: omit Tinfoil
+  -r: include RetroArch
   -t: omit Training Mod
   -w: omit WiFi Latency Mod
   -z: output a zip file
