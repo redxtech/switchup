@@ -130,7 +130,7 @@ main() {
 	arcropolis="Raytwo/ARCropolis"
 	wifi="blu-dev/arena-latency-slider"
 	training="jugeeya/UltimateTrainingModpack"
-	mods_drive="1GO7i5Z7D6I9EzqaZr3d9JbNiOa11QuNf"
+	mods_drive="https://drive.google.com/uc?export=download&id=1GO7i5Z7D6I9EzqaZr3d9JbNiOa11QuNf"
 	mods_zip="$HOME/Documents/Switch/resources/mods.zip"
 	hdr="HDR-Development/HDR-Releases"
 
@@ -138,9 +138,7 @@ main() {
 	tmpdir=".gen_switch"
 	out="$tmpdir/root"
 	smash_dir="$out/atmosphere/contents/01006A800016E000"
-
-	# drive dl url
-	drive="https://drive.google.com/uc?export=download&id="
+	resource_dir="$(dirname "$0")/../resources"
 
 	# clean out the folder
 	if test -d "$tmpdir"; then
@@ -162,7 +160,7 @@ main() {
 	unzip -q "$tmpdir/hekate.zip" -d "$out"
 	mv "$tmpdir/fusee.bin" "$out/bootloader/payloads/fusee.bin"
 	mv $out/hekate*.bin "$out/bootloader/payloads/hekate.bin"
-	curl -L "$drive$hekate_cfg" -o "$out/bootloader/hekate_ipl.ini" 2>/dev/null
+	cp "$resource_dir/hekate_ipl.ini" "$out/bootloader/hekate_ipl.ini"
 
 	# then the sigpatches
 	echo "adding sigpatches..."
@@ -204,7 +202,7 @@ main() {
 		ghr "$fastcfwswitch" "fastCFWswitch*.zip" "$tmpdir/fastCFWswitch.zip"
 		unzip -q "$tmpdir/nx-ovlloader.zip" -d "$out"
 		unzip -q "$tmpdir/fastCFWswitch.zip" -d "$out"
-		curl -L "$drive$fastcfwswitch_cfg_drive" -o "$out/config/fastCFWSwitch/config.ini" 2>/dev/null
+		cp "$resource_dir/fastCFWswitch.ini" "$out/config/fastCFWSwitch/config.ini"
 	fi
 
 	# then HDR
@@ -244,7 +242,7 @@ main() {
 	# then skin mods
 	echo "adding skin mods..."
 	if test -z "$mods_zip"; then
-		curl -L "$drive$mods_drive" -o "$tmpdir/mods.zip" 2>/dev/null
+		curl -L "$mods_drive" -o "$tmpdir/mods.zip" 2>/dev/null
 		unzip -q "$tmpdir/mods.zip" -d "$out"
 	else
 		unzip -q "$mods_zip" -d "$out"
@@ -253,15 +251,15 @@ main() {
 	# then emuNAND
 	if test "$eflag"; then
 		echo "adding emuNAND..."
-		curl -L "$drive$hekate_cfg_emu" -o "$out/bootloader/hekate_ipl.ini" 2>/dev/null
+		cp "$resource_dir/emu/hekate_ipl.ini" "$out/bootloader/hekate_ipl.ini"
 		if test "$fflag"; then
-			curl -L "$drive$fastcfwswitch_emu_cfg_drive" -o "$out/config/fastCFWSwitch/config.ini" 2>/dev/null
+			cp "$resource_dir/emu/fastCFWswitch.ini" "$out/config/fastCFWSwitch/config.ini"
 		fi
 
 		echo "adding nintendo hosts blocking..."
 		mkdir -p "$out/atmosphere/hosts"
-		curl -L "$drive$hosts_drive" -o "$out/atmosphere/hosts/emummc.txt" 2>/dev/null
-		curl -L "$drive$exosphere_drive" -o "$out/exosphere.ini" 2>/dev/null
+		cp "$resource_dir/emu/hosts.txt" "$out/atmosphere/hosts/emummc.txt"
+		cp "$resource_dir/emu/exosphere.ini" "$out/exosphere.ini"
 
 	fi
 
