@@ -133,6 +133,7 @@ main() {
 	mods_drive="https://drive.google.com/uc?export=download&id=1GO7i5Z7D6I9EzqaZr3d9JbNiOa11QuNf"
 	mods_zip="$HOME/Documents/Switch/resources/mods.zip"
 	hdr="HDR-Development/HDR-Releases"
+	smashline="blu-dev/smashline_hook"
 
 	# folder names
 	tmpdir=".gen_switch"
@@ -210,14 +211,27 @@ main() {
 		echo "adding HDR..."
 		ghr "$hdr" "switch-package.zip" "$tmpdir/hdr.zip"
 		unzip -q "$tmpdir/hdr.zip" -d "$out"
-		mv "$smash_dir" "$smash_dir-hdr"
-		mv "$out/ultimate" "$out/ultimate-hdr"
+		rm -r "$smash_dir/exefs"
+		rm "$smash_dir/romfs/skyline/plugins/"*.nro
+
+		echo "adding smashline_hook..."
+		ghr "$smashline" "libsmashline_hook.nro" "$smash_dir/romfs/skyline/plugins/libsmashline_hook.nro"
+
+		echo "adding ARCropolis workspaces..."
+		arcropolis_dir="$out/ultimate/arcropolis/config/1154720435214108633/7988075541687562371"
+		mkdir -p "$arcropolis_dir"
+		cp "$resource_dir/hdr/workspace" "$arcropolis_dir"
+		cp "$resource_dir/hdr/workspace_list" "$arcropolis_dir"
+		cp "$resource_dir/hdr/preset" "$arcropolis_dir"
+		cp "$resource_dir/hdr/HDR_preset2" "$arcropolis_dir"
 	fi
 
 	# then skyline
 	echo "adding skyline..."
 	ghr "$skyline" "skyline.zip" "$tmpdir/skyline.zip" "beta"
-	mkdir -p "$smash_dir"
+	if ! test -d "$smash_dir"; then
+		mkdir -p "$smash_dir"
+	fi
 	unzip -q "$tmpdir/skyline.zip" -d "$smash_dir"
 
 	# then arcropolis
