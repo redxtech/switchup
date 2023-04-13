@@ -27,23 +27,23 @@ switchup -ghz
 ## included content
 
 |Name|Location|Flag|Enabled by default|
----------------------------------------
-|Atmosphere|[https://github.com/Atmosphere-NX/Atmosphere](GitHub)|`N/A`|`yes`|
-|Hekate|[https://github.com/CTCaer/hekate](GitHub)|`N/A`|`yes`|
-|Sigpatches|[https://sigmapatches.coomer.party/sigpatches.zip](Website)|`N/A`|`yes`|
-|Skyline|[https://github.com/skyline-dev/skyline](GitHub)|`N/A`|`yes`|
-|ARCropolis|[https://github.com/Raytwo/ARCropolis](GitHub)|`N/A`|`yes`|
-|WiFi Latency Mod|[https://github.com/blu-dev/arena-latency-slider](GitHub)|`-w`|`yes`|
-|Training Modpack|[https://github.com/jugeeya/UltimateTrainingModpack](GitHub)|`-t`|`yes`|
-|fastCFWswitch|[https://github.com/Hartie95/fastCFWswitch](GitHub)|`-f`|`yes`|
-|Tesla Overlay|[https://github.com/WerWolv/Tesla-Menu](GitHub)|follows `-f`|`yes`|
-|nx-ovlloader|[https://github.com/WerWolv/nx-ovlloader](GitHub)|follows `-f`|`yes`|
-|HewDraw Remix|[https://github.com/HDR-Development/HDR-Releases](GitHub)|`-h`|`no`|
-|Smashline Hook|[https://github.com/blu-dev/smashline_hook](GitHub)|follows `-h`|`no`|
-|DBI|[https://github.com/rashevskyv/dbi](GitHub)|`-d`|`yes`|
-|Goldleaf|[https://github.com/XorTroll/Goldleaf](GitHub)|`-g`|`yes`|
-|Lockpick_RCM|[https://github.com/shchmue/Lockpick_RCM](GitHub)|`-l`|`yes`|
-|Blood Falcon Skin (c02 only)|[https://gamebanana.com/mods/308097](GameBanana)|`N/A`|`yes`|
+|--- |---     |--- |---               |
+|Atmosphere|[GitHub](https://github.com/Atmosphere-NX/Atmosphere)|`N/A`|`yes`|
+|Hekate|[GitHub](https://github.com/CTCaer/hekate)|`N/A`|`yes`|
+|Sigpatches|[Website](https://sigmapatches.coomer.party)|`N/A`|`yes`|
+|Skyline|[GitHub](https://github.com/skyline-dev/skyline)|`N/A`|`yes`|
+|ARCropolis|[GitHub](https://github.com/Raytwo/ARCropolis)|`N/A`|`yes`|
+|WiFi Latency Mod|[GitHub](https://github.com/blu-dev/arena-latency-slider)|`-w`|`yes`|
+|Training Modpack|[GitHub](https://github.com/jugeeya/UltimateTrainingModpack)|`-t`|`yes`|
+|fastCFWswitch|[GitHub](https://github.com/Hartie95/fastCFWswitch)|`-f`|`yes`|
+|Tesla Overlay|[GitHub](https://github.com/WerWolv/Tesla-Menu)|follows `-f`|`yes`|
+|nx-ovlloader|[GitHub](https://github.com/WerWolv/nx-ovlloader)|follows `-f`|`yes`|
+|HewDraw Remix|[GitHub](https://github.com/HDR-Development/HDR-Releases)|`-h`|`no`|
+|Smashline Hook|[GitHub](https://github.com/blu-dev/smashline_hook)|follows `-h`|`no`|
+|DBI|[GitHub](https://github.com/rashevskyv/dbi)|`-d`|`yes`|
+|Goldleaf|[GitHub](https://github.com/XorTroll/Goldleaf)|`-g`|`yes`|
+|Lockpick_RCM|[GitHub](https://github.com/shchmue/Lockpick_RCM)|`-l`|`yes`|
+|Blood Falcon Skin (c02 only)|[GameBanana](https://gamebanana.com/mods/308097)|`N/A`|`yes`|
 
 ## todo
 - add update flag to only generate atmosphere/hekate/training mod/fastCFWswitch/tesla files
