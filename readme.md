@@ -42,9 +42,9 @@ switchup -ghz
 |Smashline Hook|[GitHub](https://github.com/blu-dev/smashline_hook)|follows `-h`|`no`|
 |DBI|[GitHub](https://github.com/rashevskyv/dbi)|`-d`|`yes`|
 |Goldleaf|[GitHub](https://github.com/XorTroll/Goldleaf)|`-g`|`yes`|
+|Tinfoil|[Website](http://tinfoil.io)|`-n`|`yes`|
 |Lockpick_RCM|[GitHub](https://github.com/shchmue/Lockpick_RCM)|`-l`|`yes`|
 |Blood Falcon Skin (c02 only)|[GameBanana](https://gamebanana.com/mods/308097)|`N/A`|`yes`|
 
 ## todo
 - add update flag to only generate atmosphere/hekate/training mod/fastCFWswitch/tesla files
-- add tinfoil option

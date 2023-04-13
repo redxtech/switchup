@@ -24,12 +24,13 @@ main() {
 	hflag=
 	kflag=1
 	lflag=1
+	nflag=1
 	tflag=1
 	wflag=1
 	zflag=
 
 	# handle getting options from the command line
-	while getopts 'cdefghklotwz' OPTION; do
+	while getopts 'cdefghklnotwz' OPTION; do
 		case $OPTION in
 		c)
 			cflag=
@@ -55,6 +56,9 @@ main() {
 		l)
 			lflag=
 			;;
+		n)
+			nflag=
+			;;
 		t)
 			tflag=
 			;;
@@ -74,6 +78,7 @@ main() {
       -h: include HDR
       -k: keep folder (if zipping)
       -l: omit Lockpick_RCM
+      -n: omit Tinfoil
       -t: omit Training Mod
       -w: omit WiFi Latency Mod
       -z: output a zip\n" "$(basename "$0")" >&2
@@ -103,6 +108,9 @@ main() {
 	if test "$gflag"; then
 		filename="${filename}G"
 	fi
+	if test "$nflag"; then
+		filename="${filename}N"
+	fi
 	if test "$fflag"; then
 		filename="${filename}F"
 	fi
@@ -121,6 +129,7 @@ main() {
 	sigpatches="https://sigmapatches.coomer.party/sigpatches.zip"
 	dbi="rashevskyv/dbi"
 	goldleaf="XorTroll/Goldleaf"
+	tinfoil="http://tinfoil.media/repo/Tinfoil%20Self%20Installer%20%5B050000BADDAD0000%5D%5B16.0%5D%5Bv0%5D.zip"
 	lockpick="shchmue/Lockpick_RCM"
 	tesla="WerWolv/Tesla-Menu"
 	ovlloader="WerWolv/nx-ovlloader"
@@ -180,6 +189,13 @@ main() {
 	if test "$gflag"; then
 		echo "adding Goldleaf..."
 		ghr "$goldleaf" "Goldleaf.nro" "$out/switch/Goldleaf.nro" "0.10"
+	fi
+
+	# then tinfoil
+	if test "$nflag"; then
+		echo "adding Tinfoil..."
+		curl -L "$tinfoil" -o "$tmpdir/tinfoil.zip" 2>/dev/null
+		unzip -q "$tmpdir/tinfoil.zip" -d "$out"
 	fi
 
 	# then lockpick
