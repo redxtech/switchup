@@ -123,7 +123,6 @@ main() {
 	goldleaf="XorTroll/Goldleaf"
 	lockpick="shchmue/Lockpick_RCM"
 	tesla="WerWolv/Tesla-Menu"
-	tesla_fork="ELY3M/Tesla-Menu"
 	ovlloader="WerWolv/nx-ovlloader"
 	fastcfwswitch="Hartie95/fastCFWswitch"
 	skyline="skyline-dev/skyline"
@@ -192,12 +191,12 @@ main() {
 	# then tesla overlay and fastcfwswitch
 	if test "$fflag"; then
 		echo "adding fastCFWswitch..."
-		if test -z "$tesla_fork"; then
+		if test -z "$tesla"; then
 			ghr "$tesla" "ovlmenu.zip" "$tmpdir/ovlmenu.zip"
 			unzip -q "$tmpdir/ovlmenu.zip" -d "$out"
 		else
 			mkdir -p "$out/switch/.overlays"
-			ghr "$tesla_fork" "ovlmenu.ovl" "$out/switch/.overlays/ovlmenu.ovl"
+			ghr "$tesla" "ovlmenu.ovl" "$out/switch/.overlays/ovlmenu.ovl"
 		fi
 		ghr "$ovlloader" "nx-ovlloader.zip" "$tmpdir/nx-ovlloader.zip"
 		ghr "$fastcfwswitch" "fastCFWswitch*.zip" "$tmpdir/fastCFWswitch.zip"
