@@ -306,6 +306,7 @@ main() {
 		echo "adding RetroArch..."
 		curl -L "$retroarch" -o "$tmpdir/retroarch.7z" 2>/dev/null
 		7za x "$tmpdir/retroarch.7z" -o"$out"
+		mkdir "$out/roms"
 	fi
 
 	# move out folder
