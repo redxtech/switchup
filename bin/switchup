@@ -221,13 +221,8 @@ main() {
 	# then tesla overlay and fastcfwswitch
 	if test "$fflag"; then
 		echo "adding fastCFWswitch..."
-		if test -z "$tesla"; then
-			ghr "$tesla" "ovlmenu.zip" "$tmpdir/ovlmenu.zip"
-			unzip -q "$tmpdir/ovlmenu.zip" -d "$out"
-		else
-			mkdir -p "$out/switch/.overlays"
-			ghr "$tesla" "ovlmenu.ovl" "$out/switch/.overlays/ovlmenu.ovl"
-		fi
+		mkdir -p "$out/switch/.overlays"
+		ghr "$tesla" "ovlmenu.ovl" "$out/switch/.overlays/ovlmenu.ovl"
 		ghr "$ovlloader" "nx-ovlloader.zip" "$tmpdir/nx-ovlloader.zip"
 		ghr "$fastcfwswitch" "fastCFWswitch*.zip" "$tmpdir/fastCFWswitch.zip"
 		unzip -q "$tmpdir/nx-ovlloader.zip" -d "$out"
