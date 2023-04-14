@@ -60,3 +60,11 @@ there aren't too many programs required to run `switchup`.
 
 ## todo
 - add update flag to only generate atmosphere/hekate/training mod/fastCFWswitch/tesla files
+- add [TinWoo](https://github.com/mrdude2478/TinWoo)
+- add [aio-switch-updater](https://github.com/HamletDuFromage/aio-switch-updater)
+- add [ovl-sysmodules](https://github.com/WerWolv/ovl-sysmodules)
+- add [Status-Monitor-Overlay](https://github.com/masagrator/Status-Monitor-Overlay)
+- add [sys-clk](https://github.com/retronx-team/sys-clk) and/or [sys-clk-overlay](https://github.com/SunResearchInstitute/sys-clk-Overlay)
+- add [nx-btred](https://github.com/plutooo/nx-btred)
+- add [MissionControl](https://github.com/ndeadly/MissionControl) and/or [sys-con](https://github.com/cathery/sys-con)?
+- add [Amiigo](https://github.com/CompSciOrBust/Amiigo) and/or [emuiibo](https://github.com/XorTroll/emuiibo)
