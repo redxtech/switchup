@@ -143,7 +143,8 @@ main() {
 	dbi="rashevskyv/dbi"
 	goldleaf="XorTroll/Goldleaf"
 	tinfoil="http://tinfoil.media/repo/Tinfoil%20Self%20Installer%20%5B050000BADDAD0000%5D%5B16.0%5D%5Bv0%5D.zip"
-	lockpick="shchmue/Lockpick_RCM"
+	# lockpick="shchmue/Lockpick_RCM"
+	lockpick="https://web.archive.org/web/20230507184417if_/https://objects.githubusercontent.com/github-production-release-asset-2e65be/173835337/cb859225-7d5e-4ea8-ba0e-6acd27da1799?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230507%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230507T184417Z&X-Amz-Expires=300&X-Amz-Signature=6fa0b42e5fe24c610440d97760b4dc389454d8aecb8ec29cd4992c078ad255af&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=173835337&response-content-disposition=attachment%3B%20filename%3DLockpick_RCM.bin&response-content-type=application%2Foctet-stream"
 	tesla="WerWolv/Tesla-Menu"
 	ovlloader="WerWolv/nx-ovlloader"
 	fastcfwswitch="Hartie95/fastCFWswitch"
@@ -161,7 +162,7 @@ main() {
 	tmpdir=".gen_switch"
 	out="$tmpdir/root"
 	smash_dir="$out/atmosphere/contents/01006A800016E000"
-	resource_dir="$(dirname "$0")/../resources"
+	resource_dir="$(dirname "$0")/../share/switchup"
 
 	# clean out the folder
 	if test -d "$tmpdir"; then
@@ -215,7 +216,8 @@ main() {
 	# then lockpick
 	if test "$lflag"; then
 		echo "adding Lockpick_RCM..."
-		ghr "$lockpick" "Lockpick_RCM.bin" "$out/bootloader/payloads/Lockpick_RCM.bin"
+		# ghr "$lockpick" "Lockpick_RCM.bin" "$out/bootloader/payloads/Lockpick_RCM.bin"
+		curl -L "$lockpick" -o "$out/bootloader/payload/Lockpick_RCM.bin" 2>/dev/null
 	fi
 
 	# then tesla overlay and fastcfwswitch
