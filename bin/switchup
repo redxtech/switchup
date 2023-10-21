@@ -19,6 +19,13 @@ ghr() {
 	fi
 }
 
+# download the latest release from a repo, including prereleases
+ghr_latest() {
+	release="$(gh release list -L1 --repo Atmosphere-NX/Atmosphere | awk -F'\t' '{print $3}')"
+
+	ghr "$@" "$release"
+}
+
 main() {
 	# default option values
 	cflag=1
@@ -174,8 +181,8 @@ main() {
 
 	# start with atmosphere
 	echo "adding atmosphere..."
-	ghr "$atmosphere" "atmosphere*.zip" "$tmpdir/atmosphere.zip"
-	ghr "$atmosphere" "fusee.bin" "$tmpdir/fusee.bin"
+	ghr_latest "$atmosphere" "atmosphere*.zip" "$tmpdir/atmosphere.zip"
+	ghr_latest "$atmosphere" "fusee.bin" "$tmpdir/fusee.bin"
 	unzip -q "$tmpdir/atmosphere.zip" -d "$out"
 
 	# then hekate
@@ -262,7 +269,7 @@ main() {
 
 	# then arcropolis
 	echo "adding ARCropolis..."
-	ghr "$arcropolis" "release.zip" "$tmpdir/arcropolis.zip"
+	ghr_latest "$arcropolis" "release.zip" "$tmpdir/arcropolis.zip"
 	unzip -q "$tmpdir/arcropolis.zip" -d "$out"
 
 	# then wifi mod
@@ -275,7 +282,7 @@ main() {
 	# then training mod
 	if test "$tflag"; then
 		echo "adding training mod..."
-		ghr "$training" "TrainingModpack.zip" "$tmpdir/training.zip"
+		ghr_latest "$training" "TrainingModpack.zip" "$tmpdir/training.zip"
 		unzip -q "$tmpdir/training.zip" -d "$out"
 	fi
 
