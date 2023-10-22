@@ -21,7 +21,7 @@ ghr() {
 
 # download the latest release from a repo, including prereleases
 ghr_latest() {
-	release="$(gh release list -L1 --repo Atmosphere-NX/Atmosphere | awk -F'\t' '{print $3}')"
+	release="$(gh release list -L1 --repo "$1" | awk -F'\t' '{print $3}')"
 
 	ghr "$@" "$release"
 }
