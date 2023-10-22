@@ -266,13 +266,13 @@ main() {
 		echo "adding smashline_hook..."
 		ghr "$smashline" "libsmashline_hook.nro" "$smash_dir/romfs/skyline/plugins/libsmashline_hook.nro"
 
-		echo "adding ARCropolis workspaces..."
-		arcropolis_dir="$out/ultimate/arcropolis/config/1154720435214108633/7988075541687562371"
-		mkdir -p "$arcropolis_dir"
-		cp "$resource_dir/hdr/workspace" "$arcropolis_dir"
-		cp "$resource_dir/hdr/workspace_list" "$arcropolis_dir"
-		cp "$resource_dir/hdr/preset" "$arcropolis_dir"
-		cp "$resource_dir/hdr/HDR_preset2" "$arcropolis_dir"
+		# echo "adding ARCropolis workspaces..."
+		# arcropolis_dir="$out/ultimate/arcropolis/config/1154720435214108633/7988075541687562371"
+		# mkdir -p "$arcropolis_dir"
+		# cp "$resource_dir/hdr/workspace" "$arcropolis_dir"
+		# cp "$resource_dir/hdr/workspace_list" "$arcropolis_dir"
+		# cp "$resource_dir/hdr/preset" "$arcropolis_dir"
+		# cp "$resource_dir/hdr/HDR_preset2" "$arcropolis_dir"
 	fi
 
 	# then skyline
