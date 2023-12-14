@@ -23,7 +23,7 @@ jobs:
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "switchup*.zip"
+          artifacts: "SwitchUp*.zip"
           body: this release is based off the latest commit to `master`, and as such, is highly unstable. only use this if you know what you are doing.
           prerelease: true
           commit: master

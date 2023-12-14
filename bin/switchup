@@ -316,11 +316,11 @@ main() {
 
 	# then skin mods
 	echo "adding skin mods..."
-	if test -z "$mods_zip"; then
+	if test -f "$mods_zip"; then
+		unzip -q "$mods_zip" -d "$out"
+	else
 		curl -L "$mods_drive" -o "$tmpdir/mods.zip" 2>/dev/null
 		unzip -q "$tmpdir/mods.zip" -d "$out"
-	else
-		unzip -q "$mods_zip" -d "$out"
 	fi
 
 	# then emuNAND
