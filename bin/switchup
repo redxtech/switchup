@@ -40,11 +40,12 @@ main() {
 	nflag=1
 	rflag=
 	tflag=1
+	vflag=1
 	wflag=1
 	zflag=
 
 	# handle getting options from the command line
-	while getopts 'acdefghklnrtwz' OPTION; do
+	while getopts 'acdefghklnrtvwz' OPTION; do
 		case $OPTION in
 		a)
 			aflag=
@@ -82,6 +83,9 @@ main() {
 		t)
 			tflag=
 			;;
+		v)
+			vflag=
+			;;
 		w)
 			wflag=
 			;;
@@ -102,6 +106,7 @@ main() {
       -n: omit Tinfoil
       -r: include RetroArch
       -t: omit Training Mod
+      -v: omit V-Sync mod
       -w: omit WiFi Latency Mod
       -z: output a zip\n" "$(basename "$0")" >&2
 			exit 2
@@ -167,6 +172,7 @@ main() {
 	skyline="skyline-dev/skyline"
 	arcropolis="Raytwo/ARCropolis"
 	wifi="blu-dev/arena-latency-slider"
+	vsync="blu-dev/less-delay"
 	training="jugeeya/UltimateTrainingModpack"
 	mods_drive="https://drive.google.com/uc?export=download&id=1GO7i5Z7D6I9EzqaZr3d9JbNiOa11QuNf"
 	mods_zip="$HOME/Documents/Switch/resources/mods.zip"
@@ -293,6 +299,12 @@ main() {
 		echo "adding WiFi mod..."
 		ghr "$wifi" "release.zip" "$tmpdir/wifi.zip"
 		unzip -q "$tmpdir/wifi.zip" -d "$out"
+	fi
+
+	# then v-sync mod
+	if test "$vflag"; then
+		echo "adding V-Sync mod..."
+		ghr "$vsync" "libless_delay.nro" "$smash_dir/romfs/skyline/plugins/libless_delay.nro"
 	fi
 
 	# then training mod
