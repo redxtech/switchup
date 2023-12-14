@@ -150,7 +150,10 @@ main() {
 	if test "$nflag"; then
 		filename="${filename}N"
 	fi
-	if test "$aflag" || test "$dflag" || test "$fflag" || test "$gflag" || test "$lflag" || test "$nflag"; then
+	if test "$vflag"; then
+		filename="${filename}N"
+	fi
+	if test "$aflag" || test "$dflag" || test "$fflag" || test "$gflag" || test "$lflag" || test "$nflag" || test "$vflag"; then
 		filename="${filename}_"
 	fi
 
