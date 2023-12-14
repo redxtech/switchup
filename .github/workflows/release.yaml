@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v3
+
+      - name: Build package
+        run: ./bin/switchup -z
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "switchup*.zip"
+          body: this release is based off the latest commit to `master`, and as such, is highly unstable. only use this if you know what you are doing.
+          prerelease: true
+          commit: master
+          tag: nightly
+          allowUpdates: true
+          removeArtifacts: true
