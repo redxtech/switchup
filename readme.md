@@ -39,6 +39,7 @@ switchup -ghz
 | Skyline                      | [GitHub](https://github.com/skyline-dev/skyline)                | `N/A`        | `yes`              |
 | ARCropolis                   | [GitHub](https://github.com/Raytwo/ARCropolis)                  | `N/A`        | `yes`              |
 | WiFi Latency Mod             | [GitHub](https://github.com/blu-dev/arena-latency-slider)       | `-w`         | `yes`              |
+| V-Sync Mod                   | [GitHub](https://github.com/blu-dev/less-delay)                 | `-v`         | `yes`              |
 | Training Modpack             | [GitHub](https://github.com/jugeeya/UltimateTrainingModpack)    | `-t`         | `yes`              |
 | fastCFWswitch                | [GitHub](https://github.com/Hartie95/fastCFWswitch)             | `-f`         | `yes`              |
 | Tesla Overlay                | [GitHub](https://github.com/WerWolv/Tesla-Menu)                 | follows `-f` | `yes`              |
