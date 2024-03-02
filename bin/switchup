@@ -38,14 +38,16 @@ main() {
 	kflag=1
 	lflag=1
 	nflag=1
+	pflag=1
 	rflag=
 	tflag=1
 	vflag=1
 	wflag=1
+	wwflag=
 	zflag=
 
 	# handle getting options from the command line
-	while getopts 'acdefghklnrtvwz' OPTION; do
+	while getopts 'acdefghklnprtvwWz' OPTION; do
 		case $OPTION in
 		a)
 			aflag=
@@ -77,6 +79,9 @@ main() {
 		n)
 			nflag=
 			;;
+		p)
+			rflag=0
+			;;
 		r)
 			rflag=1
 			;;
@@ -88,6 +93,10 @@ main() {
 			;;
 		w)
 			wflag=
+			;;
+		W)
+			wflag=
+			wwflag=1
 			;;
 		z)
 			zflag=1
@@ -104,6 +113,7 @@ main() {
       -k: keep folder (if zipping)
       -l: omit Lockpick_RCM
       -n: omit Tinfoil
+      -p: exclude character screen preserve
       -r: include RetroArch
       -t: omit Training Mod
       -v: omit V-Sync mod
@@ -122,6 +132,9 @@ main() {
 	fi
 	if test "$wflag"; then
 		filename="${filename}WiFi+"
+	fi
+	if test "$wwflag"; then
+		filename="${filename}WiFi++"
 	fi
 	if test "$hflag"; then
 		filename="${filename}HDR+"
@@ -150,10 +163,13 @@ main() {
 	if test "$nflag"; then
 		filename="${filename}N"
 	fi
+	if test "$pflag"; then
+		filename="${filename}P"
+	fi
 	if test "$vflag"; then
 		filename="${filename}N"
 	fi
-	if test "$aflag" || test "$dflag" || test "$fflag" || test "$gflag" || test "$lflag" || test "$nflag" || test "$vflag"; then
+	if test "$aflag" || test "$dflag" || test "$fflag" || test "$gflag" || test "$lflag" || test "$nflag" || test "$pflag" || test "$vflag"; then
 		filename="${filename}_"
 	fi
 
@@ -162,8 +178,9 @@ main() {
 	# set remote urls
 	atmosphere="Atmosphere-NX/Atmosphere"
 	hekate="CTCaer/hekate"
-	sigpatches="https://sigmapatches.coomer.party/sigpatches.zip"
+	sigpatches="https://sigmapatches.su/sigpatches.zip"
 	aio="HamletDuFromage/aio-switch-updater"
+	css_preserve="https://files.gamebanana.com/mods/character_select_preservation_release_fix.7z"
 	dbi="rashevskyv/dbi"
 	goldleaf="XorTroll/Goldleaf"
 	tinfoil="https://tinfoil.media/repo/Tinfoil%20Self%20Installer%20%5B050000BADDAD0000%5D%5B17.0%5D%5Bv3%5D.zip"
@@ -174,7 +191,8 @@ main() {
 	fastcfwswitch="Hartie95/fastCFWswitch"
 	skyline="skyline-dev/skyline"
 	arcropolis="Raytwo/ARCropolis"
-	wifi="blu-dev/arena-latency-slider"
+	wifi="https://files.gamebanana.com/mods/release_ae8fa.zip"
+	Wifi="xNaxdy/latency-slider-de"
 	vsync="blu-dev/less-delay"
 	training="jugeeya/UltimateTrainingModpack"
 	mods_drive="https://drive.google.com/uc?export=download&id=1GO7i5Z7D6I9EzqaZr3d9JbNiOa11QuNf"
@@ -274,14 +292,6 @@ main() {
 
 		echo "adding smashline_hook..."
 		ghr "$smashline" "libsmashline_hook.nro" "$smash_dir/romfs/skyline/plugins/libsmashline_hook.nro"
-
-		# echo "adding ARCropolis workspaces..."
-		# arcropolis_dir="$out/ultimate/arcropolis/config/1154720435214108633/7988075541687562371"
-		# mkdir -p "$arcropolis_dir"
-		# cp "$resource_dir/hdr/workspace" "$arcropolis_dir"
-		# cp "$resource_dir/hdr/workspace_list" "$arcropolis_dir"
-		# cp "$resource_dir/hdr/preset" "$arcropolis_dir"
-		# cp "$resource_dir/hdr/HDR_preset2" "$arcropolis_dir"
 	fi
 
 	# then skyline
@@ -300,8 +310,15 @@ main() {
 	# then wifi mod
 	if test "$wflag"; then
 		echo "adding WiFi mod..."
-		ghr "$wifi" "release.zip" "$tmpdir/wifi.zip"
-		unzip -q "$tmpdir/wifi.zip" -d "$out"
+		curl -L "$wifi" -o "$tmpdir/wifi.zip" 2>/dev/null
+		unzip -q "$tmpdir/wifi.zip" -d "$smash_dir/romfs/skyline/plugins"
+	fi
+
+	# then Wifi mod
+	if test "$wwflag"; then
+		echo "adding WiFi+ mod..."
+		ghr "$Wifi" "libzlatency_slider_de.nro" "$smash_dir/romfs/skyline/plugins/libzlatency_slider_de.nro"
+		# rm "$smash_dir/romfs/skyline/plugins/"*.nro
 	fi
 
 	# then v-sync mod
@@ -310,11 +327,19 @@ main() {
 		ghr "$vsync" "libless_delay.nro" "$smash_dir/romfs/skyline/plugins/libless_delay.nro"
 	fi
 
+	# then css preverve mod
+	if test "$pflag"; then
+		echo "adding CSS preverve..."
+		curl -L "$css_preserve" -o "$tmpdir/css.7z" 2>/dev/null
+		7za x "$tmpdir/css.7z" -o"$out" >/dev/null
+	fi
+
 	# then training mod
 	if test "$tflag"; then
 		echo "adding training mod..."
 		ghr "$training" "TrainingModpack.zip" "$tmpdir/training.zip"
-		unzip -q "$tmpdir/training.zip" -d "$out"
+		unzip -q "$tmpdir/training.zip" -d "$tmpdir/training"
+		mv "$tmpdir/training/TrainingModpack"/*.nro "$smash_dir/romfs/skyline/plugins"
 	fi
 
 	# then skin mods
